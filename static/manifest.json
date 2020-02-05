@@ -1,0 +1,9 @@
+{
+    "name": "百度天气",
+    "short_name": "standalone",
+    "start_url": "",
+    "icon": "../src/assets/login.png",
+    "background_color": "#3E4EB8",
+    "theme_color": "#2f3ba2",
+    "display": "standalone"
+}

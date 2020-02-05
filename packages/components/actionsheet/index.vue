@@ -1,0 +1,117 @@
+<template>
+  <div class="vux-actionsheet">
+    <div class="weui-mask weui-mask_transparent" :class="{'weui-actionsheet_toggle': show}" :style="{display: show ? 'block' : 'none'}" @click="onClickingMask"></div>
+    <div class="weui-actionsheet" :class="{'weui-actionsheet_toggle': show}">
+      <div class="weui-actionsheet__menu">
+        <div class="weui-actionsheet__cell" v-for="(text, key) in menus" @click="onMenuClick(text, key)" v-html="text.label || text" :class="`vux-actionsheet-menu-${text.type || 'default'}`">
+        </div>
+      </div>
+      <div class="weui-actionsheet__action" @click="emitEvent('on-click-menu', 'cancel')" v-if="showCancel">
+        <div class="weui-actionsheet__cell">{{cancelText || 'cancel'}}</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  mounted () {
+    this.$nextTick(() => {
+      this.$tabbar = document.querySelector('.weui-tabbar')
+    })
+  },
+  props: {
+    value: Boolean,
+    showCancel: Boolean,
+    cancelText: String,
+    menus: {
+      type: [Object, Array],
+      default: () => ({})
+    },
+    closeOnClickingMask: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data () {
+    return {
+      show: false
+    }
+  },
+  methods: {
+    onMenuClick (text, key) {
+      if (typeof text === 'string') {
+        this.emitEvent('on-click-menu', key)
+      } else {
+        if (text.type !== 'disabled' && text.type !== 'info') {
+          if (text.value) {
+            this.emitEvent('on-click-menu', text.value)
+          } else {
+            this.show = false
+          }
+        }
+      }
+    },
+    onClickingMask () {
+      this.closeOnClickingMask && (this.show = false)
+    },
+    emitEvent (event, menu, shouldClose = true) {
+      if (event === 'on-click-menu' && !/.noop/.test(menu)) {
+        this.$emit(event, menu)
+        this.$emit(`${event}-${menu}`)
+        shouldClose && (this.show = false)
+      }
+    }
+    // fixIos (zIndex) {
+    //   if (this.$tabbar && /iphone/i.test(navigator.userAgent)) {
+    //     this.$tabbar.style.zIndex = zIndex
+    //   }
+    // }
+  },
+  watch: {
+    // TODO: 验证tabber和Actionsheet混用是否有问题。
+    show (val) {
+      this.$emit('input', val)
+      // if (val) {
+      //   this.fixIos(-1)
+      // } else {
+      //   setTimeout(() => {
+      //     this.fixIos(100)
+      //   }, 200)
+      // }
+    },
+    value (val) {
+      this.show = val
+    }
+  },
+  beforeDestroy () {
+    this.fixIos(100)
+  }
+}
+</script>
+
+<style lang="less">
+@import '../../styles/weui/widget/weui_tips/weui_mask';
+@import '../../styles/weui/widget/weui_tips/weui_actionsheet';
+
+.vux-actionsheet-gap {
+  height: 8px;
+  width: 100%;
+  background-color: #eee;
+}
+.vux-actionsheet-cancel:before {
+  border-top: none;
+}
+.vux-actionsheet-menu-primary {
+  color: @actionsheet-label-primary-color;
+}
+.vux-actionsheet-menu-warn {
+  color: @actionsheet-label-warn-color;
+}
+.vux-actionsheet-menu-default {
+  color: @actionsheet-label-default-color;
+}
+.vux-actionsheet-menu-disabled {
+  color: @actionsheet-label-disabled-color;
+}
+</style>
