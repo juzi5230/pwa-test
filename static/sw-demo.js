@@ -14,6 +14,7 @@
    但是在service-worker-allowed允许的最大范围内， 注册将会成功
 */
 console.log('9999')
+console.log(navigator)
 if ('serviceWorker' in navigator) {
   console.log(1)
   window.addEventListener('load', function () {
