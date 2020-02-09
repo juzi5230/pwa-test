@@ -1,4 +1,6 @@
+console.log('lallalalalal')
 this.addEventListener('install', function (event) {
+    console.log(44)
   event.waitUntil( // 控制以下代码的流程，只有以下代码resolve了，安装过程才能结束
     // 安装过程中开辟一个跟service worker所对应的缓存区域， 并命名为my-cache-v1
     caches.open('my-cache-v1').then(function (cache) { // 获取到缓存区域， 并命名为cache
@@ -8,7 +10,9 @@ this.addEventListener('install', function (event) {
       return cache.addAll([
         '/',
         '/test.js',
-        '/test.css'
+        '/test.css',
+        '/static/axios.min.js',
+        '/static/scrollreveal.min.js'
       ])
     })
   )

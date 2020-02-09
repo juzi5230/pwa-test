@@ -2,6 +2,14 @@
   <x-header class="app-header header vux-1px" @on-click-back="handleBack" :title="headerOption.title" :left-options="headerOption">
     <a class="app-header-close" v-show="showClose" slot="left" href="javascript:;" @click="close">关闭</a>
   </x-header>
+  <!-- <van-nav-bar
+  title="标题"
+  left-text="返回"
+  right-text="按钮"
+  left-arrow
+  @click-left="onClickLeft"
+  @click-right="onClickRight"
+/> -->
 </template>
 
 <script>

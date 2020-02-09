@@ -28,6 +28,14 @@ export default new Router({
       meta: {
         activeIndex: 2
       }
+    },
+    {
+      path: '/guide',
+      name: 'Guide',
+      component: resolve => require(['@/pages/guide/index'], resolve),
+      meta: {
+        activeIndex: 3
+      }
     }
   ]
 })

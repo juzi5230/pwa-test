@@ -10,7 +10,7 @@
     </tabbar-item>
     <tabbar-item @on-item-click="replace('Apply')">
       <span slot="icon" class="iconfont icon-medal footer-icon"></span>
-      <span slot="label" class="footer-item">申请</span>
+      <span slot="label" class="footer-item">工作</span>
     </tabbar-item>
     <tabbar-item>
       <span slot="icon" class="iconfont icon-analy footer-icon"></span>
