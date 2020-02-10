@@ -6,5 +6,8 @@ export default {
   },
   getDepartAttendance () {
     return commonPromise('leave/depart')
+  },
+  getWorkDetail () {
+    return commonPromise('/work')
   }
 }

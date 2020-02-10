@@ -124,25 +124,25 @@ export default {
         .then((res) => {
           let statistics = []
           statistics.push({
-            number: res.total - res.clocked,
+            number: res.data.total - res.data.clocked,
             text: '未打卡'
           })
           statistics.push({
-            number: res.late,
+            number: res.data.late,
             text: '迟到'
           })
           statistics.push({
-            number: res.out,
+            number: res.data.out,
             text: '外勤'
           })
           statistics.push({
-            number: res.unsign,
+            number: res.data.unsign,
             text: '未激活'
           })
           this.statistics = statistics
-          this.percent = (res.clocked / res.total) * 100
-          this.clocked = res.clocked
-          this.total = res.total
+          this.percent = (res.data.clocked / res.data.total) * 100
+          this.clocked = res.data.clocked
+          this.total = res.data.total
         })
     },
     initReveal () {
