@@ -53,6 +53,7 @@
 
 <script>
 import service from '../../services'
+import mCall from '@/utils/mCall'
 export default {
   data () {
     return {
@@ -159,6 +160,14 @@ export default {
   },
   created () {
     this.getWorkDetail()
+    this.$store.commit('SET_HEADER',
+      { // header相关信息
+        showBack: mCall.hasFullScreen(), // 如果是校信环境，并且支持全屏嵌入H5应用，那么就显示返回。
+        preventGoBack: true,
+        title: '考勤',
+        backText: ''
+      }
+    )
     this.$store.commit('SHOW_BOTTOM', true)
   },
   methods: {
