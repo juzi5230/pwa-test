@@ -4,7 +4,7 @@
       <div class="white-block">
         <div class="flex-row">
           <div>乐之行智慧校园</div>
-          <van-icon name="chat-o" info="99+" />
+          <van-icon name="comment-o" size="20" info="99+" @click="toMessage"/>
         </div>
       </div>
       <div class="telecommuting-wrap">
@@ -47,7 +47,7 @@
         <template v-slot:index>第{{ index + 1 }}页</template>
       </van-image-preview>
     </div>
-    <van-loading type="spinner" color="#1989fa" v-show="loading" size="100" vertical/>
+    <van-loading type="spinner" color="#1989fa" v-show="loading" size="50" vertical/>
   </div>
 </template>
 
@@ -159,9 +159,14 @@ export default {
   },
   created () {
     this.getWorkDetail()
+    this.$store.commit('SHOW_BOTTOM', true)
   },
   methods: {
+    toMessage () {
+      this.$router.push('/message')
+    },
     getWorkDetail () {
+      // 接口中返回必须数据，对于非必须数据则不传递，避免流量浪费
       service.getWorkDetail().then(res => {
         if (res.code === '1') {
           this.contentList = res.data.contentList
@@ -192,26 +197,7 @@ export default {
 </script>
 
 <style lang="less">
+// （使用外部样式文件， 有效利用缓存）， 但是打包后，发现打包到了js文件中，并没有和其他代码分开, 但是可以达到减少请求次数的目的
 @import '../../assets/less/variable.less';
 @import './apply.less';
-</style>
-<style scoped>
-.page-apply /deep/ .van-cell {
-  line-height: 50px;
-}
-.page-apply /deep/ .van-cell__title {
-  font-size: 23px;
-}
-.page-apply /deep/ .custom-title {
-  color: lightgrey;
-}
-.apply-wrap {
-  overflow-y: auto;
-  margin-bottom: 50px;
-  margin-top: 50px;
-  background: #fff;
-}
-.apply-wrap /deep/ .van-loading {
-  top: 200px;
-}
 </style>

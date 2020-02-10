@@ -9,5 +9,8 @@ export default {
   },
   getWorkDetail () {
     return commonPromise('/work')
+  },
+  getTodoList () {
+    return commonPromise('/todoList')
   }
 }

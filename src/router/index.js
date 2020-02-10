@@ -32,7 +32,15 @@ export default new Router({
     {
       path: '/guide',
       name: 'Guide',
-      component: resolve => require(['@/pages/guide/index'], resolve),
+      component: resolve => require(['@/pages/apply/detail/guide/index'], resolve),
+      meta: {
+        activeIndex: 3
+      }
+    },
+    {
+      path: '/message',
+      name: 'Message',
+      component: resolve => require(['@/pages/apply/detail/message/index'], resolve),
       meta: {
         activeIndex: 3
       }

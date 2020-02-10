@@ -1,9 +1,13 @@
+@deep: ~'>>>'; // less 语法中可以使用/deep/， 但是谷歌浏览器会有警告； less语法不识别>>>,  解决方案是采用的less的转义(scaping)和变量插值(Variable Interpolation)
 .page-apply {
   // margin-top: 50px;
   background-color: #ffffff;
   overflow-y: auto;
   .grid-text {
     line-height: 100px; 
+  }
+  .white-block {
+    margin: 20px;
   }
 }
 .flex-row {
@@ -54,5 +58,24 @@
     text-align: end;
     width: 100%;
   }
+}
+
+.page-apply @{deep} .van-cell {
+  line-height: 50px;
+}
+.page-apply @{deep} .van-cell__title {
+  font-size: 23px;
+}
+.page-apply @{deep} .custom-title {
+  color: lightgrey;
+}
+.apply-wrap {
+  overflow-y: auto;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  background: #fff;
+}
+.apply-wrap @{deep} .van-loading {
+  top: 200px;
 }
 

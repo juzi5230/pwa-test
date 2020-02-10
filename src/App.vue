@@ -4,7 +4,7 @@
     <transition name="fade" mode="out-in">
       <router-view class="app-content"></router-view>
     </transition>
-    <app-footer></app-footer>
+    <app-footer v-if="showBottom"></app-footer>
   </base-components>
 </template>
 
@@ -12,6 +12,7 @@
 import { baseComponents } from 'maroon'
 import appHeader from './components/appHeader'
 import appFooter from './components/appFooter'
+import {mapState} from 'vuex'
 
 export default {
   name: 'App',
@@ -25,6 +26,9 @@ export default {
     appHeader,
     appFooter
   },
+  computed: mapState({
+    showBottom: state => state.common.showBottom
+  }),
   created () {
     try {
       document.body.removeChild(document.getElementById('appLoading'))
