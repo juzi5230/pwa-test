@@ -38,7 +38,7 @@ export default {
         backText: ''
       }
     )
-    this.$store.commit('SHOW_BOTTOM', false)
+    // this.$store.commit('SHOW_BOTTOM', false)
   }
 }
 </script>

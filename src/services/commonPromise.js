@@ -7,7 +7,7 @@ const axios = window.axios // eslint-disable-line
  * @param {number} expire 过期时间(秒)。模式为2时需要
  * @return {[type]}     [description]
  */
-export default function (url, storeMode, expire) {
+export default function (url, param, storeMode, expire) {
   return new Promise((resolve, reject) => {
     let data = ''
     if (storeMode === 1) {
@@ -19,7 +19,7 @@ export default function (url, storeMode, expire) {
       resolve(data)
       return
     }
-    axios.get(url)
+    axios.get(url, {params: param})
       .then(({data}) => {
         if (storeMode === 1) {
           store.setHash(url, data)

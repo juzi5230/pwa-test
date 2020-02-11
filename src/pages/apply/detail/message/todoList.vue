@@ -8,14 +8,41 @@
             v-model="listLoading"
             :finished="finished"
             finished-text="没有更多了"
-            @load="getDetail"
+            @load="getDetail(0)"
           >
             <van-cell v-for="item in detail.launchList" :key="item" :title="item" />
           </van-list>
         </van-tab>
-        <van-tab title="待处理">内容 2</van-tab>
-        <van-tab title="已处理">内容 3</van-tab>
-        <van-tab title="抄送我">内容 4</van-tab>
+        <van-tab title="待处理">
+          <van-list
+            v-model="listLoading"
+            :finished="finished"
+            finished-text="没有更多了"
+            @load="getDetail(1)"
+          >
+            <van-cell v-for="item in detail.todoList" :key="item" :title="item" />
+          </van-list>
+        </van-tab>
+        <van-tab title="已处理">
+          <van-list
+            v-model="listLoading"
+            :finished="finished"
+            finished-text="没有更多了"
+            @load="getDetail(2)"
+          >
+            <van-cell v-for="item in detail.handledList" :key="item" :title="item" />
+          </van-list>
+        </van-tab>
+        <van-tab title="抄送我">
+          <van-list
+            v-model="listLoading"
+            :finished="finished"
+            finished-text="没有更多了"
+            @load="getDetail(3)"
+          >
+            <van-cell v-for="item in detail.copyList" :key="item" :title="item" />
+          </van-list>
+        </van-tab>
       </van-tabs>
     </div>
   </div>
@@ -32,17 +59,27 @@ export default {
       detail: {
         launchList: [],
         todoList: [],
-        handled: [],
+        handledList: [],
         copyList: []
       }
     }
   },
   methods: {
-    getDetail () {
+    getDetail (type) {
       this.listLoading = true
-      service.getTodoList().then(res => {
+      service.getTodoList({type: type}).then(res => {
         if (res.code === '1') {
-          this.detail = res.data
+          // this.detail.push(res.data)
+          if (type === 0) {
+            // console.log(1)
+            this.detail.launchList.push(...res.data.launchList)
+          } else if (type === 1) {
+            this.detail.todoList.push(...res.data.todoList)
+          } else if (type === 2) {
+            this.detail.handledList.push(...res.data.handledList)
+          } else {
+            this.detail.copyList.push(...res.data.copyList)
+          }
         } else {
           this.$notify(res.message)
         }
@@ -54,7 +91,7 @@ export default {
     }
   },
   created () {
-    this.getDetail()
+    this.getDetail(this.active)
   }
 }
 </script>

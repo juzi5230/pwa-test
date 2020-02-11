@@ -10,7 +10,8 @@ export default new Router({
       name: 'Clock',
       component: resolve => require(['@/pages/clock/index'], resolve),
       meta: {
-        activeIndex: 0
+        activeIndex: 0,
+        publicBottom: true // 用于判断是否需要显示默认公共底部tab
       }
     },
     {
@@ -18,7 +19,8 @@ export default new Router({
       name: 'Statistics',
       component: resolve => require(['@/pages/statistics/index'], resolve),
       meta: {
-        activeIndex: 1
+        activeIndex: 1,
+        publicBottom: true
       }
     },
     {
@@ -26,7 +28,8 @@ export default new Router({
       name: 'Apply',
       component: resolve => require(['@/pages/apply/index'], resolve),
       meta: {
-        activeIndex: 2
+        activeIndex: 2,
+        publicBottom: true
       }
     },
     {
@@ -34,7 +37,8 @@ export default new Router({
       name: 'Guide',
       component: resolve => require(['@/pages/apply/detail/guide/index'], resolve),
       meta: {
-        activeIndex: 3
+        activeIndex: 3,
+        publicBottom: false
       }
     },
     {
@@ -42,7 +46,8 @@ export default new Router({
       name: 'Message',
       component: resolve => require(['@/pages/apply/detail/message/index'], resolve),
       meta: {
-        activeIndex: 3
+        activeIndex: 3,
+        publicBottom: false
       }
     }
   ]

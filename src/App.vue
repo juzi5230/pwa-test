@@ -12,12 +12,14 @@
 import { baseComponents } from 'maroon'
 import appHeader from './components/appHeader'
 import appFooter from './components/appFooter'
-import {mapState} from 'vuex'
+// import {mapState} from 'vuex'
 
 export default {
   name: 'App',
   data () {
-    return {}
+    return {
+      showBottom: true
+    }
   },
   methods: {
   },
@@ -26,9 +28,9 @@ export default {
     appHeader,
     appFooter
   },
-  computed: mapState({
-    showBottom: state => state.common.showBottom
-  }),
+  // computed: mapState({
+  //   showBottom: state => state.common.showBottom
+  // }),
   created () {
     try {
       document.body.removeChild(document.getElementById('appLoading'))
@@ -37,6 +39,11 @@ export default {
       }, 500)
     } catch (e) {
 
+    }
+  },
+  watch: {
+    $route (to, from) {
+      this.showBottom = to.meta.publicBottom
     }
   }
 }

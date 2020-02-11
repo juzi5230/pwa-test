@@ -13,8 +13,8 @@ const state = {
     preventGoBack: true,
     title: '考勤',
     backText: ''
-  },
-  showBottom: true
+  }
+  // showBottom: true
 }
 
 // const fn = () => {}
@@ -26,10 +26,10 @@ const mutations = {
   },
   [types.APP_CLOSE] (state, data) {
     mCall.closeH5()
-  },
-  [types.SHOW_BOTTOM] (state, data) {
-    state.showBottom = data
   }
+  // [types.SHOW_BOTTOM] (state, data) {
+  //   state.showBottom = data
+  // }
 }
 
 export default {

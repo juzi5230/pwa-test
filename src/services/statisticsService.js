@@ -10,7 +10,7 @@ export default {
   getWorkDetail () {
     return commonPromise('/work')
   },
-  getTodoList () {
-    return commonPromise('/todoList')
+  getTodoList (data) {
+    return commonPromise('/todoList', data)
   }
 }

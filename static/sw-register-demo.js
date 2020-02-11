@@ -1,25 +1,30 @@
-console.log('lallalalalal')
+console.log('before install')
 this.addEventListener('install', function (event) {
-    console.log(44)
+  console.log('install')
   event.waitUntil( // 控制以下代码的流程，只有以下代码resolve了，安装过程才能结束
     // 安装过程中开辟一个跟service worker所对应的缓存区域， 并命名为my-cache-v1
     caches.open('my-cache-v1').then(function (cache) { // 获取到缓存区域， 并命名为cache
       // 调用catch.addAll 方法来缓存我们指定的文件列表
-      // addAll 是一个原始操作，如果所有指定的资源都缓存成功，则安装成功，否则安装失败
+      // addAll 是一个原始操作，如果所有指定的资源s都缓存成功，则安装成功，否则安装失败
       // 如果预缓存的文件列表过长就会增加失败的几率
       return cache.addAll([
         '/',
         '/test.js',
         '/test.css',
-        '/static/axios.min.js',
-        '/static/scrollreveal.min.js'
+        './static/axios.min.js',
+        '/static/scrollreveal.min.js',
+        './src/assets/images/telecommuting.jpg',
+        './static/images/favicon.ico',
+        './static/images/loading.gif'
       ])
     })
   )
 })
 
 // activate 触发， 表示该service worker即将获得它所注册的作用域的控制权
+console.log('before activeed')
 this.addEventListener('activate', function (event) {
+  console.log('active')
   event.waitUntil( // 控制激活的过程
     Promise.all([
       /***

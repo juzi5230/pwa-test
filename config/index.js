@@ -18,8 +18,8 @@ module.exports = {
     proxyTable: proxy,
 
     // Various Dev Server settings
-    // host: '127.0.0.1', // can be overwritten by process.env.HOST  本地开发使用service worker
-    host: '0.0.0.0', // 使用ip地址访问项目
+    host: '127.0.0.1', // can be overwritten by process.env.HOST  本地开发使用service worker
+    // host: '0.0.0.0', // 使用ip地址访问项目
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,

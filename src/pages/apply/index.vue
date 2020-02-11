@@ -153,9 +153,6 @@ export default {
       ]
     }
   },
-  // components: {
-  //   Image, Lazyload, Icon, Cell, Tag, Collapse, CollapseItem, Grid, GridItem, Button, Loading
-  // },
   mounted () {
   },
   created () {
@@ -168,7 +165,7 @@ export default {
         backText: ''
       }
     )
-    this.$store.commit('SHOW_BOTTOM', true)
+    // this.$store.commit('SHOW_BOTTOM', true)
   },
   methods: {
     toMessage () {
